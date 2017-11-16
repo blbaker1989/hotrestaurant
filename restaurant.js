@@ -44,7 +44,7 @@ var characters = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/add", function(req, res) {
@@ -77,14 +77,14 @@ app.get("/api/:characters?", function(req, res) {
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
-  var newcharacter = req.body;
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  var newReservation = req.body;
+  newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
 
-  console.log(newcharacter);
+  console.log(newReservation);
 
-  characters.push(newcharacter);
+  characters.push(newReservation);
 
-  res.json(newcharacter);
+  res.json(newReservation);
 });
 
 // Starts the server to begin listening
