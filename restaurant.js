@@ -20,7 +20,7 @@ var reservation = [
     Name: "",
     Number: "",
     Email: "",
-    Display-Name:""
+    Display_Name:""
   
   },
 ];
@@ -40,7 +40,7 @@ app.get("/add", function(req, res) {
 // Get all reservation
 app.get("/all", function(req, res) {
 
-  res.json(reservations);
+  res.json(reservation);
 });
 
 // Search for Specific Character (or all characters) - provides JSON
