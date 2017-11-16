@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 // table reservation (DATA)
 // =============================================================
 var reservation = [
-  {
+  { 
+    routeName: "",
     Name: "",
     Number: "",
     Email: "",
@@ -44,8 +45,8 @@ app.get("/all", function(req, res) {
 });
 
 // Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:reservations", function(req, res) {
-  var chosen = req.params.reservations;
+app.get("/api/:reservation", function(req, res) {
+  var chosen = req.params.reservation;
 
   res.json(reservation);
 });
@@ -59,15 +60,15 @@ app.get("/api/:reservation?", function(req, res) {
     console.log(chosen);
 
 
-    for (var i = 0; i < reservations.length; i++) {
-      if (chosen === reservations[i].routeName) {
-        return res.json(reservations[i]);
+    for (var i = 0; i < reservation.length; i++) {
+      if (chosen === reservation[i].routeName) {
+        return res.json(reservation[i]);
       }
     }
     return res.json(false);
   }
 // Create New appointments - takes in JSON input
-  return res.json(reservations);
+  return res.json(reservation);
 });
 
 
