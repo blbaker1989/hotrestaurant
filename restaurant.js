@@ -17,26 +17,12 @@ app.use(bodyParser.json());
 // =============================================================
 var characters = [
   {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
+    Name: "",
+    Number: "",
+    Email: "",
+    Display-Name:""
+  
   },
-  {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
-  },
-  {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
-  }
 ];
 
 // Routes
@@ -53,27 +39,27 @@ app.get("/add", function(req, res) {
 
 // Get all characters
 app.get("/all", function(req, res) {
-  res.json(characters);
+  res.json(reservations);
 });
 
 // Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:characters?", function(req, res) {
-  var chosen = req.params.characters;
+app.get("/api/:reservations", function(req, res) {
+  var chosen = req.params.reservations;
 
   if (chosen) {
     console.log(chosen);
 
-    for (var i = 0; i < characters.length; i++) {
-      if (chosen === characters[i].routeName) {
-        return res.json(characters[i]);
+    for (var i = 0; i < reservations.length; i++) {
+      if (chosen === reservations[i].routeName) {
+        return res.json(reservations[i]);
       }
     }
     return res.json(false);
   }
-  return res.json(characters);
+  return res.json(reservations);
 });
 
-// Create New Characters - takes in JSON input
+// Create New appointments - takes in JSON input
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
@@ -82,7 +68,7 @@ app.post("/api/new", function(req, res) {
 
   console.log(newReservation);
 
-  characters.push(newReservation);
+  reservations.push(newReservation);
 
   res.json(newReservation);
 });
